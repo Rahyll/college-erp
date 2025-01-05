@@ -1,7 +1,7 @@
-import { useFormik } from "formik";
-import * as Yup from "yup";
-import { useDispatch, useSelector } from "react-redux";
-import { loginUser } from "./authSlice";
+import { useFormik } from 'formik';
+import * as Yup from 'yup';
+import { useDispatch, useSelector } from 'react-redux';
+import { loginUser } from './authSlice';
 // import "../styles.css";
 export default function Login() {
   const dispatch = useDispatch();
@@ -9,14 +9,14 @@ export default function Login() {
 
   const formik = useFormik({
     initialValues: {
-      email: "",
-      password: "",
+      email: '',
+      password: '',
     },
     validationSchema: Yup.object({
-      email: Yup.string().email("Invalid email").required("Required"),
+      email: Yup.string().email('Invalid email').required('Required'),
       password: Yup.string()
-        .min(6, "Minimum 6 characters")
-        .required("Required"),
+        .min(6, 'Minimum 6 characters')
+        .required('Required'),
     }),
     onSubmit: (values) => {
       dispatch(loginUser(values));
@@ -44,7 +44,7 @@ export default function Login() {
           <input
             name="password"
             type="password"
-            value={formik.value.password}
+            value={formik.values.password}
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
           />
@@ -53,7 +53,7 @@ export default function Login() {
           ) : null}
         </div>
         <button type="submit" disabled={loading}>
-          {loading ? "Logging in..." : "Login"}
+          {loading ? 'Logging in...' : 'Login'}
         </button>
         {error && <div className="error">{error}</div>}
       </form>
